@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :delete]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
     @tasks = Task.all
   end
@@ -14,7 +14,7 @@ class TasksController < ApplicationController
 
   def create
     Task.create(strong_task_params)
-    redirect_to task_index_path
+    redirect_to tasks_path
   end
 
   def edit
@@ -25,13 +25,13 @@ class TasksController < ApplicationController
     # task = Task.find(params[:id])
     # @task.update(task_params)
     @task.update(strong_task_params)
-    redirect_to task_index_path
+    redirect_to tasks_path
   end
 
-  def delete
+  def destroy
     # task = Task.find(params[:id])
-    task.destroy
-    redirect_to task_index_path
+    @task.destroy
+    redirect_to tasks_path
   end
 
   private
